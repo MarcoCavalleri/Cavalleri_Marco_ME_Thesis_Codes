@@ -80,7 +80,7 @@ c_sg(dx_i*N+1:N,1:dy_i*N) = c_sg_m(1:dx_f*N,dy_f*N+1:N);
 c_sg(dx_i*N+1:N,dy_i*N+1:N) = c_sg_m(1:dx_f*N,1:dy_f*N);
 
 % Compute derivative and chemical potentials
-[dc_1g, dc_2g, dc_sg, m_1g, m_2g, m_sg] = compute_derivatives(c_1g, c_2g, c_sg);
+[dc_1g, dc_2g, dc_sg, m_1g, m_2g, m_sg] = compute_derivatives(c_1g, c_2g, c_sg, norm_chem);
 
 sigma = 10;
 gaussianKernel = exp(-(Xg.^2 + Yg.^2)/(2*sigma^2));
@@ -189,7 +189,7 @@ text('String', 'c)', 'Position', [min(xvals)-8, max(yvals)+2, 1], 'FontSize', 18
 axis([0 30 0 30]);
 
 %% Computation chemical potentials and derivatives
-function [dc_1g, dc_2g, dc_sg, m_1g, m_2g, m_sg] = compute_derivatives(c_1g, c_2g, c_sg)
+function [dc_1g, dc_2g, dc_sg, m_1g, m_2g, m_sg] = compute_derivatives(c_1g, c_2g, c_sg, norm_chem)
     
     % Parameters
     D_1 = 0.5; D_2 = 10; D_s = 1;

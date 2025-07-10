@@ -24,7 +24,7 @@ s_4 = 0.001;
 mu_Y2 = -1;
 
 % --- File paths ---
-datadir = 'C:\Users\user\Desktop\UniPd_Thesis\Pb0\fig1\results_fig1_ss1_big\'; 
+datadir = 'C:\Users\user\Desktop\UniPd_Thesis\Pb0\fig1\results_fig1_ss1\'; 
 
 filenames = {'c_1_fig1','c_2_fig1','c_3_fig1','c_s_fig1'};
 
@@ -37,22 +37,14 @@ for i = 1:4
     C{i} = T{:,3};
     M{i} = T{:,4};    
     D{i} = T{:,5};
-    if width(T)>3
-        grad_mu{i} = T{:,4};
-    else
-        grad_mu{i} = NaN(size(X{i}));
-    end
 end
 
-% Assume identical XY for all fields:
 x = X{2};
 y = Y{2};
 
-% Generate grid (from data extents)
 N = sqrt(length(x));
 assert(N==round(N),'Not a square grid!');
 
-% Generate grid for surface plots (for continuity)
 xvals = unique(x);  % sorted
 yvals = unique(y);  % sorted
 [Xg, Yg] = meshgrid(linspace(min(xvals),max(xvals),N), linspace(min(yvals),max(yvals),N));
@@ -246,7 +238,7 @@ function [dc_1g, dc_2g, dc_3g, dc_sg, m_1g, m_2g, m_3g, m_sg] = compute_derivati
     s = 1e-3; s_1 = s; s_2 = s; s_3 = s; s_4 = s; s_5 = s;
     mu_Y1 = 1; mu_Y2 = -1;
     l = 1; % chi
-    dx = 0.33; % mesh size
+    dx = 0.33; % grid size
     
     % Finite differences under PBCs
     laplace = @(f) (circshift(f, [1 0]) + circshift(f, [-1 0]) + ...

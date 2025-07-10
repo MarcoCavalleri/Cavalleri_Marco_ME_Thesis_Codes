@@ -1,7 +1,7 @@
 %% VISUALIZATION BRUSSELLATOR 
 
 % This is the same code for every steady state, it will
-% change only the datadir, filenames and the value of chi and simulation
+% change only the datadir, filenames and the value of chi (l) and simulation
 % parameters 
 
 clear; clc; close all;
